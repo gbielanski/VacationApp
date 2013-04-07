@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/fluent-hc-4.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/httpclient-4.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/httpclient-cache-4.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/httpcore-4.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gbielanski/Desktop/httpcomponents-client-4.2.3/lib/httpmime-4.2.3.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

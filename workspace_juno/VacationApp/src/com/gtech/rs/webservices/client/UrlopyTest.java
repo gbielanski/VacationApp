@@ -4,11 +4,11 @@ package com.gtech.rs.webservices.client;
 import static org.junit.Assert.*;
 
 import org.jboss.resteasy.client.ProxyFactory;
+import org.jboss.samples.webservices.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.gtech.rs.webservices.*;
 
 public class UrlopyTest {
 
@@ -25,9 +25,9 @@ public class UrlopyTest {
 	@Test
 	public void test() {
 		VacationAppInterface client = ProxyFactory.create(VacationAppInterface.class, "http://localhost:8080/AplikacjaUrlopowa/");
-		Vacation r = client.addVacation();// .dajMiesiac(/*1, 2*/);
+		/*Vacation r = client.addVacation()*/;// .dajMiesiac(/*1, 2*/);
 				
-		System.out.println("=>>" + r);
+		System.out.println("=>>" + "sfd");
 	}
 
 }

@@ -1,11 +1,11 @@
-package com.gtech.rs.webservices;
+package org.jboss.samples.webservices;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Date;
 
 @XmlRootElement
-public class Vacation {
+public class VacationSummary {
 	
 	private int id;
 	

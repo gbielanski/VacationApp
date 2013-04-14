@@ -1,4 +1,4 @@
-package com.gtech.rs.webservices;
+package org.jboss.samples.webservices;
 
 import java.util.Set;
 import java.util.HashSet;

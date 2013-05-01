@@ -3,10 +3,16 @@ package org.jboss.samples.webservices;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 @XmlRootElement
 public class Vacation {
-	
+
+	@Id
+	@GeneratedValue	
 	private int id;
 	
 	public int getId() {
@@ -26,7 +32,7 @@ public class Vacation {
 	public void setName(String nazwa) {
 		this.nazwa = nazwa;
 	}
-	
+	/*
 	private Date OD;
 	public Date getOD() {
 		return OD;
@@ -44,7 +50,7 @@ public class Vacation {
 	public void setDO(Date DO) {
 		this.DO = DO;
 	}
-	
+	*/
 	private int flag;
 	
 	public int getFlag() {

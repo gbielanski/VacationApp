@@ -3,13 +3,16 @@
  xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name>VacationApp</display-name>
-    <listener>
-    <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+  <listener>
+  	<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
   </listener>
   <servlet>
     <servlet-name>Resteasy</servlet-name>
-    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+  <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
   </servlet>
+    <listener>
+  	<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+  </listener> 
   <servlet-mapping>
     <servlet-name>Resteasy</servlet-name>
     <url-pattern>/*</url-pattern>
@@ -18,6 +21,11 @@
     <param-name>javax.ws.rs.Application</param-name>
     <param-value>org.jboss.samples.webservices.VacationApp</param-value>
   </context-param>
+ <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Resteasy</web-resource-name>
@@ -29,7 +37,7 @@
       <role-name>user</role-name>
     </auth-constraint>
     <user-data-constraint>
-      <transport-guarantee>NONE</transport-guarantee>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
   <login-config>

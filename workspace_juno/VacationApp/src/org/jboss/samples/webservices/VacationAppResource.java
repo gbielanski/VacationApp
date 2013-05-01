@@ -13,8 +13,9 @@ import javax.ws.rs.core.Context;
 
 public class VacationAppResource implements VacationAppInterface{
 
-	@Context javax.servlet.http.HttpServletRequest sr;
-	private VacationDOA vacationDAO =  new VacationDOA();
+	//@Context javax.servlet.http.HttpServletRequest sr;
+	//private VacationDOA vacationDAO =  new VacationDOA();
+	private VacationDao vacationDAO;
 	//@Context javax.ws.rs.core.SecurityContext sec; 
 	@Override
 	@GET
@@ -30,17 +31,18 @@ public class VacationAppResource implements VacationAppInterface{
 		else
 			System.out.println("User Role is none");
 */
+		vacationDAO.save(vacationDAO.fakeVacation());
 		return vacationDAO.fakeVacation();
 	
 	}
 
-	@Override
 	@GET
 	@Path("/VacationsSummary")
 	@Produces({ "application/json", "application/xml" })
-	public VacationSummary getVacationsSummary(@QueryParam("rok") int rok,
-			@QueryParam("miesiac") int miesiac) {
+	public VacationSummary getVacationsSummary(int rok, int miesiac) {
 		// TODO Auto-generated method stub
+		//return vacationDAO.fakeVacationSummary();
+		vacationDAO.save(vacationDAO.fakeVacation());
 		return vacationDAO.fakeVacationSummary();
 	}
 
@@ -65,4 +67,12 @@ public class VacationAppResource implements VacationAppInterface{
 		// TODO Auto-generated method stub
 		return vacationDAO.fakeVacation();
 	}
+	
+	public VacationDao getVacationDao() {
+		return vacationDAO;
+	}
+
+	public void setVacationDao(VacationDao vacationDao) {
+		this.vacationDAO = vacationDao;
+		}
 }

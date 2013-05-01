@@ -19,9 +19,9 @@ public interface VacationAppInterface {
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
 	public abstract Vacation getVacations();
 
-	@GET() @Path("/VacationsSummary")
+	@GET() @Path("/VacationsSummary/{rok}/{miesiac}")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract VacationSummary getVacationsSummary(@QueryParam("rok")int rok, @QueryParam("miesiac")int miesiac);	
+	public abstract VacationSummary getVacationsSummary(@PathParam("rok")int rok, @PathParam("miesiac")int miesiac);	
 
 	@POST() @Path("/NewVacation")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})

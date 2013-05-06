@@ -1,6 +1,8 @@
 package org.jboss.samples.webservices;
 
+import java.io.UnsupportedEncodingException;
 
+import javax.xml.bind.DatatypeConverter;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,27 +15,32 @@ import javax.ws.rs.core.Context;
 
 public class VacationAppResource implements VacationAppInterface{
 
-	//@Context javax.servlet.http.HttpServletRequest sr;
-	//private VacationDOA vacationDAO =  new VacationDOA();
 	private VacationDao vacationDAO;
 	//@Context javax.ws.rs.core.SecurityContext sec; 
 	@Override
 	@GET
 	@Path("/Vacations")
 	@Produces({ "application/json", "application/xml" })
-	public Vacation getVacations(/*int rok, int miesiac*/) {
+	public Vacations getVacations(String auth/*, String user*/) {
 
-/*
-		if(sec.isUserInRole("admin"))
-			System.out.println("User Role is admin");
-		else if(sec.isUserInRole("user"))
-			System.out.println("User Role is user");
-		else
-			System.out.println("User Role is none");
-*/
+		String userAndPassword64 = auth.replace("Basic ", "");
+		
+		byte[] encodedDataAsBytes =  javax.xml.bind.DatatypeConverter.parseBase64Binary(userAndPassword64);
+		String val ="";
+		try {
+			val = new String(encodedDataAsBytes, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        String user = val.substring(0, val.indexOf(':'));
+        /*String pass = val.substring(val.indexOf(':') + 1);*/	
+		
 		vacationDAO.save(vacationDAO.fakeVacation());
-		return vacationDAO.fakeVacation();
-	
+		Vacations vacations = new Vacations();
+		vacations.setVacations(vacationDAO.getVacations(user));
+		return vacations;
 	}
 
 	@GET

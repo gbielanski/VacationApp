@@ -4,6 +4,7 @@ package org.jboss.samples.webservices;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -17,7 +18,7 @@ public interface VacationAppInterface {
 	
 	@GET() @Path("/Vacations")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacation getVacations();
+	public abstract Vacations getVacations(@HeaderParam("Authorization") String auth/*, @PathParam("user") String user*/);
 
 	@GET() @Path("/VacationsSummary/{rok}/{miesiac}")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})

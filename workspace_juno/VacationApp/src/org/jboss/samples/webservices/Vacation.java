@@ -1,19 +1,28 @@
 package org.jboss.samples.webservices;
-
+import java.util.Calendar;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Date;
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
+@Table(name="VACATIONS")
 @XmlRootElement
-public class Vacation {
-
+public class Vacation{
 	@Id
 	@GeneratedValue	
 	private int id;
+	private int flag;
+	
+	private String userName;
+	private Calendar vacationSince;
+	private Calendar vacationUntil;
 	
 	public int getId() {
 		return id;
@@ -23,23 +32,41 @@ public class Vacation {
 		this.id = id;
 	}
 
-	private String nazwa;
-	
-	public String getName() {
-		return nazwa;
-	}
+	  public String getUserName() {
+		    return userName;
+		  }
 
-	public void setName(String nazwa) {
-		this.nazwa = nazwa;
+		  public void setUserName(String name) {
+		    this.userName = name;
+		  }
+	
+	  @Temporal(TemporalType.TIME)
+	  public Calendar getVacationSince() { return vacationSince; }
+	  public void setVacationSince(Calendar cal) { vacationSince = cal; }
+
+	  @Temporal(TemporalType.TIME)
+	  public Calendar getVacationUntil() { return vacationUntil; }
+	  public void setVacationUntil(Calendar cal) { vacationUntil = cal; }
+	  /*
+	private Calendar DO;
+	
+	@Temporal(TemporalType.DATE)
+	public Calendar getDO() {
+		return DO;
 	}
+	@Temporal(TemporalType.DATE)
+	public void setDO(Calendar DO) {
+		this.DO = DO;
+		
+	}*/
 	/*
-	private Date OD;
-	public Date getOD() {
-		return OD;
+	private int sinceDay;
+	public int getSinceDay() {
+		return sinceDay;
 	}
 	
-	public void setOD(Date OD) {
-		this.OD = OD;
+	public void setSinceDay(int sinceDay) {
+		this.sinceDay = sinceDay;
 	}
 	
 	private Date DO;
@@ -51,8 +78,10 @@ public class Vacation {
 		this.DO = DO;
 	}
 	*/
-	private int flag;
-	
+
+	  public String toString() {
+		    return "Vacation";
+		  }
 	public int getFlag() {
 		return flag;
 	}

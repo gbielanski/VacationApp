@@ -1,6 +1,9 @@
 package org.jboss.samples.webservices;
 
 import java.util.Date;
+import java.util.Calendar;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +14,9 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 @Transactional
 public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
+	
+	@Autowired
+	private SessionFactory sf;
 	
 	public VacationDaoImpl()
 	{
@@ -26,13 +32,8 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
 	@Override
 	public void save(Vacation vacation) {
 		
-		getHibernateTemplate().save(vacation);
-		/*
-		if(sf == null) 
-		{
-			sf.getCurrentSession().save(vacation);
-		}else;*/	
-		//sf.getCurrentSession().save(vacation);		
+		sf.getCurrentSession().save(vacation);
+		//getHibernateTemplate().save(vacation);
 	}
 	/*
 	public void delete(Vacation vacation)
@@ -40,11 +41,23 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
 		sf.getCurrentSession().delete(vacation);
 	}
 	
-	
+	*/
 	public Vacation get(int id) {
 		return (Vacation) sf.getCurrentSession().get(Vacation.class, id);
 	}
-	*/	
+	/*
+	private Contact findSingle(String hql, String paramName, Object value) {
+		List<Contact> results = getHibernateTemplate().findByNamedParam(hql,
+				paramName, value);
+		return CollectionUtils.hasUniqueObject(results) ? results.get(0) : null;
+	}
+	*/
+	/*
+	public Collection<Vacation> findVacations()
+	{
+		
+	}*/
+	
     /* (non-Javadoc)
 	 * @see org.jboss.samples.webservices.VacationDao#fakeVacation()
 	 */
@@ -53,11 +66,22 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
         Vacation vacation = new Vacation();
         
         vacation.setId(1);
-        vacation.setName("Grzegorz Bielañski");
+        vacation.setUserName("gbielanski");
         vacation.setFlag(1);
         //vacation.setOD(new Date(System.currentTimeMillis()));
-        //vacation.setDO(new Date(System.currentTimeMillis()+ 86400000));
+        Date  date = new Date();
+        
+        //vacation.setDO(date);
+        //vacation.setTimeCreated(date);
+        
+        Calendar cal1 = Calendar.getInstance();
+        cal1.set(2013,4, 6, 0, 0, 0);
+        
+        Calendar cal2 = Calendar.getInstance();
 
+        cal2.set(2013,5, 6, 0, 0, 0);
+        vacation.setVacationSince(cal1);
+        vacation.setVacationUntil(cal2);
         return vacation;
     }
     
@@ -75,5 +99,15 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
         vacationSum.setDO(new Date(System.currentTimeMillis()+ 86400000));
 
         return vacationSum;
+    }
+    
+    public List<Vacation> getVacations(String user)
+    {
+    	List<Vacation> vacations = sf.getCurrentSession().createQuery("FROM " + Vacation.class.getName() + " WHERE username = :user")
+    			.setString("user", user)
+    			.list();
+    	
+    	return vacations;
+    	
     }
 }

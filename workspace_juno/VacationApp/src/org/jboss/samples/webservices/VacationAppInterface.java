@@ -16,9 +16,10 @@ import javax.ws.rs.core.MediaType;
 @Path("/Rest")
 public interface VacationAppInterface {
 	
-	@GET() @Path("/Vacations")
+	@GET() @Path("/Vacations/{vacationSince}/{vacationUntil}")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacations getVacations(@HeaderParam("Authorization") String auth/*, @PathParam("user") String user*/);
+	public abstract Vacations getVacations(@HeaderParam("Authorization") String auth, 
+			@PathParam("vacationSince") String vacationSince, @PathParam("vacationUntil") String vacationUntil);
 
 	@GET() @Path("/VacationsSummary/{rok}/{miesiac}")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})

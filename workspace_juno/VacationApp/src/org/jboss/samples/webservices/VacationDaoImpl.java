@@ -101,9 +101,10 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
         return vacationSum;
     }
     
-    public List<Vacation> getVacations(String user)
+    public List<Vacation> getVacations(String user, String vSince, String vUntil)
     {
-    	List<Vacation> vacations = sf.getCurrentSession().createQuery("FROM " + Vacation.class.getName() + " WHERE username = :user")
+    	List<Vacation> vacations = sf.getCurrentSession().createQuery("FROM " + Vacation.class.getName() + 
+    			" WHERE username = :user AND vacationsince > \'" + vSince + "\' AND vacationsince < \'" + vUntil +"\'")
     			.setString("user", user)
     			.list();
     	

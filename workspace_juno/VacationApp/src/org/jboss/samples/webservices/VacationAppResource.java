@@ -19,9 +19,9 @@ public class VacationAppResource implements VacationAppInterface{
 	//@Context javax.ws.rs.core.SecurityContext sec; 
 	@Override
 	@GET
-	@Path("/Vacations")
+	@Path("/Vacations/{vacationSince}/{vacationUntil}")
 	@Produces({ "application/json", "application/xml" })
-	public Vacations getVacations(String auth/*, String user*/) {
+	public Vacations getVacations(String auth, String vacationSince, String vacationUntil) {
 
 		String userAndPassword64 = auth.replace("Basic ", "");
 		
@@ -37,9 +37,11 @@ public class VacationAppResource implements VacationAppInterface{
         String user = val.substring(0, val.indexOf(':'));
         /*String pass = val.substring(val.indexOf(':') + 1);*/	
 		
-		vacationDAO.save(vacationDAO.fakeVacation());
 		Vacations vacations = new Vacations();
-		vacations.setVacations(vacationDAO.getVacations(user));
+		vacations.setVacations(vacationDAO.getVacations(user, vacationSince, vacationUntil));
+		
+		//System.out.println("[VACATION GET] vacationSince " + vacationSince + " vacationUntil " + vacationUntil);
+		
 		return vacations;
 	}
 
@@ -61,7 +63,9 @@ public class VacationAppResource implements VacationAppInterface{
 	public Vacation addVacation(@PathParam("rok") int rok,
 			@PathParam("miesiac") int miesiac) {
 		// TODO Auto-generated method stub
+		vacationDAO.save(vacationDAO.fakeVacation());
 		return vacationDAO.fakeVacation();
+	
 	}
 
 	@Override

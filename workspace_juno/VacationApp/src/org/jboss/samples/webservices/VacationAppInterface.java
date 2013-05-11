@@ -21,9 +21,9 @@ public interface VacationAppInterface {
 	public abstract Vacations getVacations(@HeaderParam("Authorization") String auth, 
 			@PathParam("vacationSince") String vacationSince, @PathParam("vacationUntil") String vacationUntil);
 
-	@GET() @Path("/VacationsSummary/{rok}/{miesiac}")
+	@GET() @Path("/VacationsSummary")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract VacationSummary getVacationsSummary(@PathParam("rok")int rok, @PathParam("miesiac")int miesiac);	
+	public abstract VacationSummary getVacationsSummary(@HeaderParam("Authorization") String auth);	
 
 	@POST() @Path("/NewVacation")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})

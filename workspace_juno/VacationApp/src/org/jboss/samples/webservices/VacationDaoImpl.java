@@ -92,11 +92,16 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
 	public VacationSummary fakeVacationSummary(){
         VacationSummary vacationSum = new VacationSummary();
         
-        vacationSum.setId(1);
-        vacationSum.setName("Grzegorz Bielañski");
-        vacationSum.setFlag(1);
-        vacationSum.setOD(new Date(System.currentTimeMillis()));
-        vacationSum.setDO(new Date(System.currentTimeMillis()+ 86400000));
+        vacationSum.setName("gbielanski");
+        vacationSum.setDaysAfterTheBirth(11);
+        vacationSum.setDaysChildCare(12);
+        vacationSum.setDaysJobSearch(13);
+        vacationSum.setDaysOnDemand(14);
+        vacationSum.setDaysOther(15);
+        vacationSum.setDaysParental(16);
+        vacationSum.setDaysSpecial(17);
+        vacationSum.setDaysUnpaid(18);
+        vacationSum.setDaysVacation(19);
 
         return vacationSum;
     }
@@ -110,5 +115,11 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
     	
     	return vacations;
     	
+    }
+    
+    public VacationSummary getVacationSummary(String user)
+    {
+    	VacationSummary vacationSum= (VacationSummary)sf.getCurrentSession().createQuery("FROM " + VacationSummary.class.getName() + " WHERE name = :user").setString("user", user).uniqueResult();
+    	return vacationSum;
     }
 }

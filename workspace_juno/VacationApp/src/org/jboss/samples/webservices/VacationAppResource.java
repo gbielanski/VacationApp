@@ -48,11 +48,25 @@ public class VacationAppResource implements VacationAppInterface{
 	@GET
 	@Path("/VacationsSummary")
 	@Produces({ "application/json", "application/xml" })
-	public VacationSummary getVacationsSummary(int rok, int miesiac) {
-		// TODO Auto-generated method stub
+	public VacationSummary getVacationsSummary(String auth) {
+		String userAndPassword64 = auth.replace("Basic ", "");
+		
+		byte[] encodedDataAsBytes =  javax.xml.bind.DatatypeConverter.parseBase64Binary(userAndPassword64);
+		String val ="";
+		try {
+			val = new String(encodedDataAsBytes, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        String user = val.substring(0, val.indexOf(':'));
+        /*String pass = val.substring(val.indexOf(':') + 1);*/	
+        
+        //vacationDAO.saveSummary(vacationDAO.fakeVacation());
 		//return vacationDAO.fakeVacationSummary();
-		vacationDAO.save(vacationDAO.fakeVacation());
-		return vacationDAO.fakeVacationSummary();
+        
+        return vacationDAO.getVacationSummary(user);
 	}
 
 	@Override

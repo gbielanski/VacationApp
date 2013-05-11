@@ -26,12 +26,12 @@ public interface VacationAppInterface {
 	public abstract VacationSummary getVacationsSummary(@HeaderParam("Authorization") String auth);	
 
 	@POST() @Path("/NewVacation")
-	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
 	@Consumes({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacation addVacation(@PathParam("rok")int rok, @PathParam("miesiac")int miesiac);	
+	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
+	public abstract Vacation addVacation(Vacation vacation);	
 	
-	@POST() @Path("/ExistingVacation")
-	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
+	@POST() @Path("/ExistingVacation")	
 	@Consumes({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacation updateVacation(@PathParam("rok")int rok, @PathParam("miesiac")int miesiac);
+	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
+	public abstract Vacation updateVacation(Vacation vacation);
 }

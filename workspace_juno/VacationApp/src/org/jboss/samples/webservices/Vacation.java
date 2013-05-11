@@ -47,37 +47,6 @@ public class Vacation{
 	  @Temporal(TemporalType.TIME)
 	  public Calendar getVacationUntil() { return vacationUntil; }
 	  public void setVacationUntil(Calendar cal) { vacationUntil = cal; }
-	  /*
-	private Calendar DO;
-	
-	@Temporal(TemporalType.DATE)
-	public Calendar getDO() {
-		return DO;
-	}
-	@Temporal(TemporalType.DATE)
-	public void setDO(Calendar DO) {
-		this.DO = DO;
-		
-	}*/
-	/*
-	private int sinceDay;
-	public int getSinceDay() {
-		return sinceDay;
-	}
-	
-	public void setSinceDay(int sinceDay) {
-		this.sinceDay = sinceDay;
-	}
-	
-	private Date DO;
-	public Date getDO() {
-		return DO;
-	}
-	
-	public void setDO(Date DO) {
-		this.DO = DO;
-	}
-	*/
 
 	  public String toString() {
 		    return "Vacation";

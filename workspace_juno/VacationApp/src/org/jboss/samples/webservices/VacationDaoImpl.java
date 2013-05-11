@@ -33,8 +33,24 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
 	public void save(Vacation vacation) {
 		
 		sf.getCurrentSession().save(vacation);
-		//getHibernateTemplate().save(vacation);
 	}
+	
+	public Vacation update(Vacation vacation) {
+		
+		Vacation vacationForUpd= (Vacation)sf.getCurrentSession().get(Vacation.class, vacation.getId());
+		
+		vacationForUpd.setFlag(vacation.getFlag());
+		
+		/* I am not sure if required*/
+		vacationForUpd.setUserName(vacation.getUserName());
+		vacationForUpd.setVacationSince(vacation.getVacationSince());
+		vacationForUpd.setVacationUntil(vacation.getVacationUntil());
+		
+		sf.getCurrentSession().update(vacationForUpd);
+		
+		return vacationForUpd;
+	}
+
 	/*
 	public void delete(Vacation vacation)
 	{

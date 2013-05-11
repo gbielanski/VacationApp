@@ -4,6 +4,8 @@ import java.util.List;
 public interface VacationDao {
 
 	public abstract void save(Vacation vacation);
+	
+	public abstract Vacation update(Vacation vacation);
 
 	/*
 	public void delete(Vacation vacation)

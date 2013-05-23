@@ -1,4 +1,4 @@
-package org.jboss.samples.webservices;
+package com.gtech.webservices;
 import java.util.List;
 
 public interface VacationDao {

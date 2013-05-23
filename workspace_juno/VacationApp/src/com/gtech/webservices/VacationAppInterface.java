@@ -1,4 +1,4 @@
-package org.jboss.samples.webservices;
+package com.gtech.webservices;
 
 
 import javax.annotation.security.RolesAllowed;
@@ -16,14 +16,14 @@ import javax.ws.rs.core.MediaType;
 @Path("/Rest")
 public interface VacationAppInterface {
 	
-	@GET() @Path("/Vacations/{vacationSince}/{vacationUntil}")
+	@GET() @Path("/VacationList/{vacationSince}/{vacationUntil}")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacations getVacations(@HeaderParam("Authorization") String auth, 
+	public abstract VacationList getVacationList(@HeaderParam("Authorization") String auth, 
 			@PathParam("vacationSince") String vacationSince, @PathParam("vacationUntil") String vacationUntil);
 
-	@GET() @Path("/VacationsSummary")
+	@GET() @Path("/VacationSummary")
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract VacationSummary getVacationsSummary(@HeaderParam("Authorization") String auth);	
+	public abstract VacationSummary getVacationSummary(@HeaderParam("Authorization") String auth);	
 
 	@POST() @Path("/NewVacation")
 	@Consumes({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})

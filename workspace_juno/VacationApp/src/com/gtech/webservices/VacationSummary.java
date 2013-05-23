@@ -1,4 +1,4 @@
-package org.jboss.samples.webservices;
+package com.gtech.webservices;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

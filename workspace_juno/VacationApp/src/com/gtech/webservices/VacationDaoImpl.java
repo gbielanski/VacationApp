@@ -1,4 +1,4 @@
-package org.jboss.samples.webservices;
+package com.gtech.webservices;
 
 import java.util.Date;
 import java.util.Calendar;
@@ -84,18 +84,13 @@ public class VacationDaoImpl extends HibernateDaoSupport implements VacationDao{
         vacation.setId(1);
         vacation.setUserName("gbielanski");
         vacation.setFlag(1);
-        //vacation.setOD(new Date(System.currentTimeMillis()));
-        Date  date = new Date();
-        
-        //vacation.setDO(date);
-        //vacation.setTimeCreated(date);
-        
         Calendar cal1 = Calendar.getInstance();
-        cal1.set(2013,4, 6, 0, 0, 0);
+        cal1.clear();
+        cal1.set(2013,4, 6);
         
         Calendar cal2 = Calendar.getInstance();
-
-        cal2.set(2013,5, 6, 0, 0, 0);
+        cal2.clear();
+        cal2.set(2013,5, 6);
         vacation.setVacationSince(cal1);
         vacation.setVacationUntil(cal2);
         return vacation;

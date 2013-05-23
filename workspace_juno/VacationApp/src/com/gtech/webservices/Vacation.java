@@ -1,4 +1,4 @@
-package org.jboss.samples.webservices;
+package com.gtech.webservices;
 import java.util.Calendar;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,11 +40,11 @@ public class Vacation{
 		    this.userName = name;
 		  }
 	
-	  @Temporal(TemporalType.TIME)
+	  @Temporal(TemporalType.DATE)
 	  public Calendar getVacationSince() { return vacationSince; }
 	  public void setVacationSince(Calendar cal) { vacationSince = cal; }
 
-	  @Temporal(TemporalType.TIME)
+	  @Temporal(TemporalType.DATE)
 	  public Calendar getVacationUntil() { return vacationUntil; }
 	  public void setVacationUntil(Calendar cal) { vacationUntil = cal; }
 

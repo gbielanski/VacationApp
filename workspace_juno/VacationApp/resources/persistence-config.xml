@@ -28,8 +28,8 @@
     	<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
 	    <property name="annotatedClasses">
 	    	<list>	 
-	    		<value>org.jboss.samples.webservices.Vacation</value>
-	    		<value>org.jboss.samples.webservices.VacationSummary</value>   	
+	    		<value>com.gtech.webservices.Vacation</value>
+	    		<value>com.gtech.webservices.VacationSummary</value>   	
 			</list>
 		</property>
 	    <property name="hibernateProperties">

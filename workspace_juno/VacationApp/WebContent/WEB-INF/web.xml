@@ -19,7 +19,7 @@
   </servlet-mapping>
   <context-param>
     <param-name>javax.ws.rs.Application</param-name>
-    <param-value>org.jboss.samples.webservices.VacationApp</param-value>
+    <param-value>com.gtech.webservices.VacationApp</param-value>
   </context-param>
  <context-param>
     <param-name>contextConfigLocation</param-name>

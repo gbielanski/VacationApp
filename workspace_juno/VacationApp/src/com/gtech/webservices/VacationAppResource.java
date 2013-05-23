@@ -1,8 +1,14 @@
-package org.jboss.samples.webservices;
+package com.gtech.webservices;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.xml.bind.DatatypeConverter;
+import javax.annotation.Resource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,28 +21,58 @@ import javax.ws.rs.core.MediaType;
 
 
 public class VacationAppResource implements VacationAppInterface{
-
+	 @Resource(mappedName = "java:jboss/mail/VacApp_GMAIL")
+	 javax.mail.Session mailSession;
+	 
 	private VacationDao vacationDAO;
 	//@Context javax.ws.rs.core.SecurityContext sec; 
 	@Override
 	@GET
-	@Path("/Vacations/{vacationSince}/{vacationUntil}")
+	@Path("/VacationList/{vacationSince}/{vacationUntil}")
 	@Produces({ "application/json", "application/xml" })
-	public Vacations getVacations(String auth, String vacationSince, String vacationUntil) {		
+	public VacationList getVacationList(String auth, String vacationSince, String vacationUntil) {		
 		
-		//vacationDAO.save(vacationDAO.fakeVacation());
-		Vacations vacations = new Vacations();
+		vacationDAO.save(vacationDAO.fakeVacation());
+		VacationList vacations = new VacationList();
 		vacations.setVacations(vacationDAO.getVacations(getUserFromAuth(auth), vacationSince, vacationUntil));
 		
 		//System.out.println("[VACATION GET] vacationSince " + vacationSince + " vacationUntil " + vacationUntil);
+		
+/*************************
+        //
+        // Creates email message
+        //
+		   String to = "gbielanski@poczta.onet.pl";
+		   String from = "grzegorzbielanski@gmail.com";
+		   String subject = "Testing...";
+		   Message msg = new MimeMessage(mailSession);
+		    try {
+		      msg.setFrom(new InternetAddress(from));
+		      msg.setRecipient(Message.RecipientType.TO , new InternetAddress(to));
+		      msg.setSubject(subject);
+		      msg.setText("Working fine..!");
+		    }  catch(Exception exc) {
+		       }
+
+        //
+        // Send a message
+        //
+        try {
+			Transport.send(msg);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+***************************/		
 		
 		return vacations;
 	}
 
 	@GET
-	@Path("/VacationsSummary")
+	@Path("/VacationSummary")
 	@Produces({ "application/json", "application/xml" })
-	public VacationSummary getVacationsSummary(String auth) {
+	public VacationSummary getVacationSummary(String auth) {
         
         //vacationDAO.saveSummary(vacationDAO.fakeVacation());
 		//return vacationDAO.fakeVacationSummary();

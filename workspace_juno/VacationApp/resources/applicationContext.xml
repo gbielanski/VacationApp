@@ -8,7 +8,7 @@
 
     <!-- Inject DAO classes in service -->
     <bean id="vacationService"
-          class="org.jboss.samples.webservices.VacationAppResource"
+          class="com.gtech.webservices.VacationAppResource"
           p:vacationDao-ref="vacationDao"/>
 
 

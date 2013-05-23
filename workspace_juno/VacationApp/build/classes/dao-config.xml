@@ -13,7 +13,7 @@
 	
 	<import resource="classpath:persistence-config.xml"/>
 
-	<bean id="vacationDao" class="org.jboss.samples.webservices.VacationDaoImpl"
+	<bean id="vacationDao" class="com.gtech.webservices.VacationDaoImpl"
 	p:sessionFactory-ref="sessionFactory"/>			
 
 </beans>

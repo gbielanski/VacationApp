@@ -18,12 +18,47 @@ public class Vacation{
 	@Id
 	@GeneratedValue	
 	private int id;
-	private int flag;
 	
 	private String userName;
 	private Calendar vacationSince;
 	private Calendar vacationUntil;
-	
+	private int numberOfDays;
+	private VacationType typeOfVacation;
+	private VacationStatus stausOfVacationRequest;
+	private int numberOfOutstandingDaysUsed;
+
+	public int getNumberOfOutstandingDaysUsed() {
+		return numberOfOutstandingDaysUsed;
+	}
+
+	public void setNumberOfOutstandingDaysUsed(int numberOfOutstandingDaysUsed) {
+		this.numberOfOutstandingDaysUsed = numberOfOutstandingDaysUsed;
+	}
+
+	public VacationStatus getStausOfVacationRequest() {
+		return stausOfVacationRequest;
+	}
+
+	public void setStausOfVacationRequest(VacationStatus stausOfVacationRequest) {
+		this.stausOfVacationRequest = stausOfVacationRequest;
+	}
+
+	public int getNumberOfDays() {
+		return numberOfDays;
+	}
+
+	public void setNumberOfDays(int numberOfDays) {
+		this.numberOfDays = numberOfDays;
+	}
+
+	public VacationType getTypeOfVacation() {
+		return typeOfVacation;
+	}
+
+	public void setTypeOfVacation(VacationType typeOfVacation) {
+		this.typeOfVacation = typeOfVacation;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -51,11 +86,5 @@ public class Vacation{
 	  public String toString() {
 		    return "Vacation";
 		  }
-	public int getFlag() {
-		return flag;
-	}
-	
-	public void setFlag(int flag) {
-		this.flag = flag;
-	}	
+
 }

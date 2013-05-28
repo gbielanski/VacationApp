@@ -25,19 +25,16 @@ public class VacationAppResource implements VacationAppInterface{
 	 javax.mail.Session mailSession;
 	 
 	private VacationDao vacationDAO;
-	//@Context javax.ws.rs.core.SecurityContext sec; 
 	@Override
 	@GET
 	@Path("/VacationList/{vacationSince}/{vacationUntil}")
 	@Produces({ "application/json", "application/xml" })
 	public VacationList getVacationList(String auth, String vacationSince, String vacationUntil) {		
 		
-		vacationDAO.save(vacationDAO.fakeVacation());
+		//vacationDAO.save(vacationDAO.fakeVacation());
 		VacationList vacations = new VacationList();
-		vacations.setVacations(vacationDAO.getVacations(getUserFromAuth(auth), vacationSince, vacationUntil));
-		
-		//System.out.println("[VACATION GET] vacationSince " + vacationSince + " vacationUntil " + vacationUntil);
-		
+		vacations.setVacations(vacationDAO.getVacationList(getUserFromAuth(auth), vacationSince, vacationUntil));
+				
 /*************************
         //
         // Creates email message

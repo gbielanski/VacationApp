@@ -161,7 +161,7 @@ public class VacationAppListener implements ServletContextListener, ServletConte
      */
     public void requestInitialized(ServletRequestEvent arg0) {
         // TODO Auto-generated method stub
-    	System.out.println(String.format("[OKO8] %s", arg0.getServletRequest().getRemoteAddr()));
+    	//System.out.println(String.format("[OKO8] %s", arg0.getServletRequest().getRemoteAddr()));
     }
 	
 }

@@ -32,15 +32,16 @@ public class VacationAppResource implements VacationAppInterface{
 	public VacationList getVacationList(String auth, String vacationSince, String vacationUntil) {		
 		
 		//vacationDAO.save(vacationDAO.fakeVacation());
-		VacationList vacations = new VacationList();
-		vacations.setVacations(vacationDAO.getVacationList(getUserFromAuth(auth), vacationSince, vacationUntil));
+		VacationList vacationList = new VacationList();
+		//vacationDAO.fakeVacation();
+		vacationList.setVacations(vacationDAO.getVacationList(getUserFromAuth(auth), vacationSince, vacationUntil));
 				
 /*************************
         //
         // Creates email message
         //
-		   String to = "gbielanski@poczta.onet.pl";
-		   String from = "grzegorzbielanski@gmail.com";
+		   String to = "grzegorzbielanski@gmail.com";
+		   String from = "vacationapp@gmail.com";
 		   String subject = "Testing...";
 		   Message msg = new MimeMessage(mailSession);
 		    try {
@@ -63,7 +64,7 @@ public class VacationAppResource implements VacationAppInterface{
 		
 ***************************/		
 		
-		return vacations;
+		return vacationList;
 	}
 
 	@GET
@@ -71,7 +72,7 @@ public class VacationAppResource implements VacationAppInterface{
 	@Produces({ "application/json", "application/xml" })
 	public VacationSummary getVacationSummary(String auth) {
         
-        //vacationDAO.saveSummary(vacationDAO.fakeVacation());
+        //vacationDAO.saveSummary(vacationDAO.fakeVacationSummary());
 		//return vacationDAO.fakeVacationSummary();
         
         return vacationDAO.getVacationSummary(getUserFromAuth(auth));
@@ -82,9 +83,12 @@ public class VacationAppResource implements VacationAppInterface{
 	@Path("/NewVacation")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Vacation addVacation(Vacation vacation) {
+	public Vacation addVacation(String auth, Vacation vacation) {
 		// TODO Auto-generated method stub
-		vacationDAO.save(vacation);
+		//EscalationList escalation = 
+	    vacationDAO.addVacationRequest(vacation, getUserFromAuth(auth));
+		//TODO ESCALATE!!!
+		//vacationDAO.save(vacation);
 		return vacation;
 		
 	}
@@ -94,9 +98,9 @@ public class VacationAppResource implements VacationAppInterface{
 	@Path("/ExistingVacation")
 	@Consumes({ "application/json", "application/xml" })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Vacation updateVacation(Vacation vacation) {
+	public Vacation updateVacation(String auth, Vacation vacation) {
 		
-		Vacation vUpdated = vacationDAO.update(vacation);
+		Vacation vUpdated = vacationDAO.updateVacationRequest(vacation, getUserFromAuth(auth));
 		return vUpdated;
 	}
 	

@@ -28,10 +28,10 @@ public interface VacationAppInterface {
 	@POST() @Path("/NewVacation")
 	@Consumes({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacation addVacation(Vacation vacation);	
+	public abstract Vacation addVacation(@HeaderParam("Authorization") String auth, Vacation vacation);	
 	
 	@POST() @Path("/ExistingVacation")	
 	@Consumes({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML})
-	public abstract Vacation updateVacation(Vacation vacation);
+	public abstract Vacation updateVacation(@HeaderParam("Authorization") String auth, Vacation vacation);
 }

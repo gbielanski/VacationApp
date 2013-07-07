@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
+
 @Entity
 @Table(name="VACATIONS")
 @XmlRootElement
@@ -19,12 +22,15 @@ public class Vacation{
 	@GeneratedValue	
 	private int id;
 	
+	@NotNull
 	private String userName;
 	private Calendar vacationSince;
 	private Calendar vacationUntil;
+	@Min(1)
 	private int numberOfDays;
 	private VacationType typeOfVacation;
 	private VacationStatus stausOfVacationRequest;
+	@Min(0)
 	private int numberOfOutstandingDaysUsed;
 
 	public int getNumberOfOutstandingDaysUsed() {

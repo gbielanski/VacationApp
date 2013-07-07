@@ -7,23 +7,38 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
+
 @Entity
 @Table(name="VACATIONS_SUMMARY")
 @XmlRootElement
 public class VacationSummary 
 {
 	@Id
-	@GeneratedValue	
+	@GeneratedValue
 	private int id;
+	
+	@NotNull
 	private String name;
+	@Min(0)
 	private int daysVacation;
+	@Min(0)	
 	private int daysUnpaid;
+	@Min(0)	
 	private int daysSpecial;
+	@Min(0)	
 	private int daysParental;
+	@Min(0)	
 	private int daysAfterTheBirth;
+	@Min(0)	
 	private int daysOnDemand;
+	@Min(0)	
 	private int daysChildCare;
+	@Min(0)	
 	private int daysJobSearch;
+	@Min(0)	
 	private int daysOther;
 	
 	public int getId() {
